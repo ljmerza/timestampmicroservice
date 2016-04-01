@@ -6,7 +6,7 @@ const fs = require('fs')
 
 const app = express()
 
-app.use(express.static())
+app.use(express.static('.'))
 
 app.get("/:timestamp", function(req, res){
 
@@ -30,7 +30,7 @@ app.get("/:timestamp", function(req, res){
 
 app.get('*', function(req,res){
     res.set('content-type','text/html')
-    res.send(fs.readFileSync('/index.html','utf8'))
+    res.send(fs.readFileSync(__dirname + '/index.html','utf8'))
 })
 
 app.listen(process.env.PORT || 80, function(){
