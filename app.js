@@ -1,16 +1,14 @@
-'use strict'
+var express = require("express")
+var moment = require('moment')
+var fs = require('fs')
 
-const express = require("express")
-const moment = require('moment')
-const fs = require('fs')
-
-const app = express()
+var app = express()
 
 app.use(express.static('.'))
 
 app.get("/:timestamp", function(req, res){
 
-    let time = moment(req.params.timestamp, 'MMMM DD, YYYY', true)
+    var time = moment(req.params.timestamp, 'MMMM DD, YYYY', true)
     if (!time.isValid()){
         time = moment.unix(req.params.timestamp);
     }
